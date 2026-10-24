@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jogo da Glória — 9 meses de nós ❤️</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><div class="brand-title">♡ Jogo da Glória ♡</div><div>9 meses de nós e ainda muitos para viver…</div></div>
+    <div class="room-status" id="roomStatus">🔒 Sala privada · só o Alberto cria mesas</div>
+  </header>
+
+  <main>
+    <section id="lobby" class="panel lobby">
+      <h1>Vamos jogar, amor? ❤️</h1>
+      <p>Cria uma sala privada e envia o link à Bernardete pelo WhatsApp.</p>
+      <div class="form-grid">
+        <label>O teu nome<input id="name" value="Alberto" maxlength="24"></label>
+        <label>Palavra-passe de administrador<input id="adminPassword" type="password" placeholder="ADMIN_PASSWORD"></label>
+      </div>
+      <button id="createBtn" class="primary">Criar sala privada</button>
+      <hr>
+      <h2>Entrar numa sala</h2>
+      <div class="form-grid">
+        <label>Nome<input id="joinName" value="Bernardete" maxlength="24"></label>
+        <label>Código da sala<input id="roomCode" placeholder="Ex.: A1B2C3" maxlength="6"></label>
+      </div>
+      <button id="joinBtn">Entrar na sala</button>
+      <p id="lobbyError" class="error"></p>
+      <p class="hint">A primeira vez, configura <code>ADMIN_PASSWORD</code> nas variáveis de ambiente do Render.</p>
+    </section>
+
+    <section id="game" class="game-layout hidden">
+      <div class="main-game">
+        <div class="players">
+          <div class="player-card"><span class="pawn red">●</span><div><b id="p1name">Alberto</b><small id="p1pos">Casa: 1</small></div></div>
+          <div class="turn-card"><div id="dice" class="dice">⚄</div><b id="turnText">À tua vez!</b><small id="rollText">Joga o dado</small></div>
+          <div class="player-card"><span class="pawn blue">●</span><div><b id="p2name">Bernardete</b><small id="p2pos">Casa: 1</small></div></div>
+        </div>
+        <div id="board" class="board">
+          <div class="board-center">
+            <img src="/foto-casal.jpg" alt="Alberto e Bernardete">
+            <div class="photo-caption">Estamos juntos, amor…<br><strong>…para sempre. ❤️</strong></div>
+          </div>
+          <div id="tiles"></div>
+          <div id="pawns"></div>
+        </div>
+        <div class="controls">
+          <button id="rollBtn" class="primary">🎲 Lançar o dado</button>
+          <button id="copyLinkBtn">🔗 Copiar link da sala</button>
+          <button id="shareBtn">💬 Partilhar WhatsApp</button>
+        </div>
+        <div id="notice" class="notice">Cria uma sala para começar.</div>
+        <div class="media">
+          <div class="video-card"><video id="remoteVideo" autoplay playsinline></video><span>Bernardete</span></div>
+          <div class="video-card local"><video id="localVideo" autoplay playsinline muted></video><span>Tu</span></div>
+          <div class="media-buttons"><button id="cameraBtn">📷 Ligar câmara</button><button id="micBtn">🎙️ Ligar microfone</button></div>
+        </div>
+      </div>
+      <aside class="side">
+        <section class="panel"><h2>💌 Chat do jogo</h2><div id="chatMessages" class="chat-messages"></div><form id="chatForm"><input id="chatInput" placeholder="Escreve uma mensagem…" maxlength="300"><button>Enviar</button></form></section>
+        <section class="panel"><h2>🎯 Como jogar</h2><ol><li>Joguem o dado à vez.</li><li>Avancem pelo percurso até à casa 50.</li><li>Nas casas especiais, cumpram o desafio.</li><li>Quem chegar primeiro à meta vence — mas o prémio é jogarem juntos! ❤️</li></ol></section>
+        <section class="panel"><h2>✨ Casas especiais</h2><div class="legend"><p>❤️ <b>Casa do Amor</b><small>Pergunta romântica</small></p><p>💋 <b>Casa do Beijo</b><small>Manda um beijo pela câmara</small></p><p>🎁 <b>Casa Surpresa</b><small>Mensagem especial</small></p><p>😄 <b>Casa da Diversão</b><small>Desafio engraçado</small></p><p>💌 <b>Casa da Memória</b><small>Recorda os vossos 9 meses</small></p><p>⭐ <b>Casa Extra</b><small>Avança 2 casas</small></p></div></section>
+      </aside>
+    </section>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
